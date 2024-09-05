@@ -1,0 +1,5 @@
+pytest
+playwright
+requests
+qase-pytest==6.1.0
+python-dotenv
