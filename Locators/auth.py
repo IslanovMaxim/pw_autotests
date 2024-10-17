@@ -1,4 +1,5 @@
 class Auth:
-    USERNAME_INPUT = "[data-test = 'username']"
-    PASSWORD_INPUT = "[data-test='password']"
-    LOGIN_BTN = "[data-test='login-button']"
+    PHONE_INPUT = "[name = 'phone']"
+    CITY_YES = "//button[text()='Да']"
+    CODE_INPUT = "[name='code']"
+    APPROVE_NUM = "//button[text()='Подтвердить номер']"

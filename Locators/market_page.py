@@ -1,3 +1,4 @@
 class Market:
-  ADD_TO_CART = "button.btn"
-  FOLLOW_TO_BASKET = "[id='shopping_cart_container']"
+  #CITY_YES = "//button[text()='Да']"
+  DRUG_INPUT = "[placeholder='Название, действующее вещество']"
+  CHOOSE_FROM_LIST = "//mark[text()='Пенталгин']"

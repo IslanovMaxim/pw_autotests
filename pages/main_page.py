@@ -1,3 +1,5 @@
+from asyncio import timeout
+
 from pages.base import Base
 from data.constants import Constants
 from Locators.auth import Auth
@@ -10,8 +12,10 @@ class Main(Base):
         self.assertion = Assertions(page)
 
     def user_login(self):
-        self.open("")
-        self.input(Auth.USERNAME_INPUT, Constants.login)
-        self.input(Auth.PASSWORD_INPUT, Constants.password)
-        self.click(Auth.LOGIN_BTN)
-        self.assertion.check_URL('inventory.html', "Wrong URL")
+        self.open("lk/login")
+        self.click(Auth.CITY_YES)
+        self.input(Auth.PHONE_INPUT, Constants.login)
+        self.click(Auth.APPROVE_NUM)
+        self.timeout(3000)
+        self.input(Auth.CODE_INPUT, Constants.code)
+        self.assertion.check_URL('', "Wrong URL")

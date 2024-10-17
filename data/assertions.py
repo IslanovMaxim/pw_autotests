@@ -9,7 +9,7 @@ class Assertions(Base):
 
 #check_url проверяет, что находится на нужной нам странице:
     def check_URL(self, uri, msg):
-        expect(self.page).to_have_url(f"{host.get_base_url()}{uri}", timeout=10000), msg
+        expect(self.page).to_have_url(f"{host.get_base_url()}{uri}", timeout=30000), msg
 
 #check_presence проверяет, что элемент присутствует на странице (если есть — то assert True).
     def check_presence(self, locator, msg):

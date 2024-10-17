@@ -3,6 +3,6 @@ import os
 class Constants:
     try:
         login = os.getenv('AUTH_LOGIN')
-        password = os.getenv('AUTH_PASSWORD')
+        code = os.getenv('AUTH_CODE')
     except KeyError:
         print("LOGIN OR PW WASN'T FOUND")
