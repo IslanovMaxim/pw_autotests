@@ -7,5 +7,5 @@ from pages.market_main_page import MarketPage
 class TestBuyProduct:
     def test_buy_product(self, browser):
         p = MarketPage(browser)
-        p.add_to_cart()
-        p.checkout()
+        p.add_to_cart_less_50()
+        p.checkout_less_50()

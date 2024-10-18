@@ -36,7 +36,7 @@ class Base:
     def input_value_by_index(self, selector: str, index: int, data: str): #вводим данные в нужные поля по индексу
         self.page.locator(selector).nth(index).fill(data)
 
-    def click_by_index_text(self, text: str, index: int):  # находим элемент(кнопку)с нужным текстом и индексом внутри и кликаем
+    def click_text_by_index(self, text: str, index: int):  # находим элемент(кнопку)с нужным текстом и индексом внутри и кликаем
         self.page.get_by_text(text).nth(index).click()
 
     def click_by_text(self, text: str):  # находим элемент(кнопку)с нужным текстом внутри и кликаем

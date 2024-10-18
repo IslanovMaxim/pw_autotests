@@ -1,3 +1,4 @@
+from more_itertools.more import first
 from playwright.sync_api import Page
 from data.environment import host
 from playwright.sync_api import expect
@@ -18,10 +19,18 @@ class Assertions(Base):
 
 #check_absence проверяет, что элемент отсутствует на странице (если нет — то assert True).
     def check_absence(self, locator, msg):
-        loc = self.page.locator(locator)
+        loc = self.page.locator(locator).first
         expect(loc).to_be_hidden(timeout=700), msg
 
 #have_text проверяет, что у элемента нужный текст
     def have_text(self, locator, text: str, msg):
         loc = self.page.locator(locator)
         expect(loc).to_have_text(text), msg
+
+    def element_disabled(self, locator, msg):  # веб элемент отключен
+        loc = self.page.locator(locator)
+        expect(loc).to_be_disabled(), msg
+
+    def contain_text(self, locator, text: str, msg):  # элемент содержит текст
+        loc = self.page.locator(locator)
+        expect(loc).to_contain_text(text), msg
