@@ -55,3 +55,10 @@ class MarketPage(Base):
 
     def checkout_less_50(self):
         self.assertions.contain_text("body > div.layout.j-layout > div.layout__main.j-layout-main > div.layout__body > div.page.page-cart.j-page-cart.j-page > div > div > div.box__row.page-cart__content.j-page-cart-content > div.box__col.box__col_md_4.page-cart__order > div > div > div.page-cart__details.j-total-details > div.cart-notify.j-cart-notify.page-cart__details-notify > h4",  'Минимальная сумма заказа 50 ₽', 'no')
+
+    def checkout_choose_city(self):
+        self.open("")
+        self.click_text_by_index('Нет', 1)
+        self.click_element_by_index(Market.CHOOSE_CITY_FROM_LIST, 0)
+        self.timeout(3000)
+        self.assertions.have_text('#anchor-header > div.header__inner > div.header__container.j-header-container > div.header__location.hidden_xs.d_md_f > div > div > a:nth-child(1)', 'Казань', "no")

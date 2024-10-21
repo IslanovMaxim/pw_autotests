@@ -1,5 +1,5 @@
 import pytest
-from pages.main_page import Main
+from pages.auth_page import Main
 
 
 @pytest.mark.smoke
