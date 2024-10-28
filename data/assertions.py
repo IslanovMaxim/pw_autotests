@@ -9,7 +9,7 @@ class Assertions(Base):
         super().__init__(page)
 
 #check_url проверяет, что находится на нужной нам странице:
-    def check_URL(self, uri, msg):
+    def check_url(self, uri, msg):
         expect(self.page).to_have_url(f"{host.get_base_url()}{uri}", timeout=30000), msg
 
 #check_presence проверяет, что элемент присутствует на странице (если есть — то assert True).
@@ -25,6 +25,16 @@ class Assertions(Base):
 #have_text проверяет, что у элемента нужный текст
     def have_text(self, locator, text: str, msg):
         loc = self.page.locator(locator)
+        expect(loc).to_have_text(text), msg
+
+# have_text проверяет, что у ПЕРВОГО элемента нужный текст
+    def have_text_first(self, locator, text: str, msg):
+        loc = self.page.locator(locator).first
+        expect(loc).to_have_text(text), msg
+
+# have_text проверяет, что у ПОСЛЕДНЕГО элемента нужный текст
+    def have_text_last(self, locator, text: str, msg):
+        loc = self.page.locator(locator).last
         expect(loc).to_have_text(text), msg
 
     def element_disabled(self, locator, msg):  # веб элемент отключен

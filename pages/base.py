@@ -41,3 +41,6 @@ class Base:
 
     def click_by_text(self, text: str):  # находим элемент(кнопку)с нужным текстом внутри и кликаем
         self.page.get_by_text(text).click()
+
+    def screenshot(self, path: str):
+        self.page.screenshot(path="screenshots/cancel_order.png")

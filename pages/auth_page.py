@@ -18,4 +18,4 @@ class Main(Base):
         self.click(Auth.APPROVE_NUM)
         self.timeout(3000)
         self.input(Auth.CODE_INPUT, Constants.code)
-        self.assertion.check_URL('', "Wrong URL")
+        self.assertion.check_url('', "Wrong URL")

@@ -1,3 +1,4 @@
+from Locators.account_page import Account
 from pages.base import Base
 from Locators.basket_page import Basket
 from Locators.market_page import Market
@@ -54,11 +55,64 @@ class MarketPage(Base):
         self.click_text_by_index('₽', 0)
 
     def checkout_less_50(self):
-        self.assertions.contain_text("body > div.layout.j-layout > div.layout__main.j-layout-main > div.layout__body > div.page.page-cart.j-page-cart.j-page > div > div > div.box__row.page-cart__content.j-page-cart-content > div.box__col.box__col_md_4.page-cart__order > div > div > div.page-cart__details.j-total-details > div.cart-notify.j-cart-notify.page-cart__details-notify > h4",  'Минимальная сумма заказа 50 ₽', 'no')
+        self.assertions.have_text_last(Basket.FINAL_TEXT_LESS_50,  'Минимальная сумма заказа 50 ₽', 'no')
 
     def checkout_choose_city(self):
         self.open("")
         self.click_text_by_index('Нет', 1)
         self.click_element_by_index(Market.CHOOSE_CITY_FROM_LIST, 0)
         self.timeout(3000)
-        self.assertions.have_text('#anchor-header > div.header__inner > div.header__container.j-header-container > div.header__location.hidden_xs.d_md_f > div > div > a:nth-child(1)', 'Казань', "no")
+        self.assertions.have_text_first(Market.CHANGED_CITY, 'Казань', "no")
+
+    def decrease_product(self):
+        self.click_element_by_index(Basket.INCREASE_BTN, 0)
+        self.click_element_by_index(Basket.DECREASE_BTN, 0)
+
+        self.assertions.have_text_first(Basket.PRODUCT_COUNTER, '1', "no")
+
+    def increase_product(self):
+        self.click_element_by_index(Basket.INCREASE_BTN, 0)
+        self.assertions.have_text_first(Basket.PRODUCT_COUNTER, '2', "no")
+
+    def delete_from_cart(self):
+        self.click(Basket.DELETE_BTN)
+        self.click(Market.CONFIRM_DELETE_FROM_CART)
+        self.assertions.have_text(Market.EMPTY_CART, 'Корзина пуста', "no")
+
+    def to_favorites(self):
+        self.click(Market.TO_FAVORITES)
+        self.timeout(3000)
+        self.assertions.check_url('lk?lk=favorite', "Wrong URL")
+
+    def buy_set_2_1(self):
+        self.open("")
+        self.click_element_by_index(Market.CITY_YES, 1)
+        self.input_value_by_index(Market.DRUG_INPUT, 0, Constants.drug_name_set_2_1)
+        self.click_text_by_index('Гематоген',0)
+        self.click_element_by_index(Market.ADD_BTN, 0)
+        self.click_element_by_index(Basket.INCREASE_BTN, 0)
+        self.click_element_by_index(Basket.INCREASE_BTN, 0)
+        self.timeout(3000)
+        self.click_text_by_index('₽', 0)
+        self.assertions.have_text(Basket.TOTAL_PRICE, '81 ₽', "no")
+        self.assertions.have_text(Basket.TOTAL_DISCOUNT, '-39 ₽', "no")
+
+
+    def buy_set_discount_on_second(self):
+        self.open("")
+        self.click_element_by_index(Market.CITY_YES, 1)
+        self.input_value_by_index(Market.DRUG_INPUT, 0, Constants.drug_name_set_discount_on_second)
+        self.click_text_by_index('Канефрон',0)
+        self.click_element_by_index(Market.ADD_BTN, 0)
+        self.click_element_by_index(Basket.INCREASE_BTN, 0)
+        self.timeout(3000)
+        self.click_text_by_index('₽', 0)
+        self.assertions.have_text(Basket.TOTAL_PRICE, '1 298 ₽', "no")
+        self.assertions.have_text(Basket.TOTAL_DISCOUNT, '-200 ₽', "no")
+
+    def cancel_order(self):
+        self.click(Market.TO_PROFILE)
+        self.click_element_by_index(Account.TO_ORDER, 0)
+        self.click(Account.CANCEL_BTN)
+        self.assertions.have_text(Account.EMPTY_ORDERS, 'Ваш заказ отменен', "no")
+        self.screenshot(path="pw_autotests/screenshots/cancel_order.png")
