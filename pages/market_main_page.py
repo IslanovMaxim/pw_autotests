@@ -116,3 +116,28 @@ class MarketPage(Base):
         self.click(Account.CANCEL_BTN)
         self.assertions.have_text(Account.EMPTY_ORDERS, 'Ваш заказ отменен', "no")
         self.screenshot(path="pw_autotests/screenshots/cancel_order.png")
+
+    def log_in(self):
+        self.open("")
+        self.click_element_by_index(Market.CITY_YES, 1)
+        self.click(Market.TO_PROFILE_FOR_AUTH)
+        self.input(Market.NUM_INPUT, Constants.login_test)
+        self.click(Auth.APPROVE_NUM)
+        self.timeout(3000)
+        self.input(Auth.CODE_INPUT, Constants.code)
+        self.assertions.check_url('', "Wrong URL")
+        self.screenshot(path="pw_autotests/screenshots/log_in.png")
+
+    # def farmabonus(self):
+    #     self.open("")
+    #     self.click_element_by_index(Market.CITY_YES, 1)
+    #     self.click_element_by_index(Market.TO_PROFILE_FOR_AUTH, 0)
+    #     self.input(Market.NUM_INPUT, Constants.login)
+    #     self.click(Auth.APPROVE_NUM)
+    #     self.timeout(3000)
+    #     self.input(Auth.CODE_INPUT, Constants.code)
+    #     self.assertions.check_url('', "Wrong URL")
+    #     self.click_element_by_index(Market.TO_PROFILE, 0)
+    #     self.click(Account.CARDS)
+    #     self.assertions.have_text(Account.BALANCE, 'Баланс карты', "no")
+    #     self.screenshot(path="pw_autotests/screenshots/balance.png")

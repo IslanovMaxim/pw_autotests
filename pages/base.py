@@ -43,4 +43,4 @@ class Base:
         self.page.get_by_text(text).click()
 
     def screenshot(self, path: str):
-        self.page.screenshot(path="screenshots/cancel_order.png")
+        self.page.screenshot()

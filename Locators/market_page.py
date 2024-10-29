@@ -11,6 +11,8 @@ class Market:
   EMPTY_CART = "//h1[text()='Корзина пуста']"
   CHANGED_CITY = "[class='header__location-link']"
   TO_FAVORITES = "//p[text()='Избранное']"
-  TO_PROFILE = "//p[text()='Мой профиль']"
+  TO_PROFILE_FOR_AUTH = "//p[text()='Войти на сайт']" #неавторизованный пользователь
+  TO_PROFILE = "//p[text()='Мой профиль']" #авторизованный пользователь
+
 
 
