@@ -125,8 +125,16 @@ class MarketPage(Base):
         self.click(Auth.APPROVE_NUM)
         self.timeout(3000)
         self.input(Auth.CODE_INPUT, Constants.code)
+        self.assertions.have_text(Market.TO_PROFILE, 'Мой профиль', "no")
         self.assertions.check_url('', "Wrong URL")
         self.screenshot(path="pw_autotests/screenshots/log_in.png")
+
+    def log_out(self):
+        self.click(Market.TO_PROFILE)
+        self.click(Account.LOG_OUT_BTN)
+        self.assertions.check_url('', "Wrong URL")
+        self.assertions.have_text(Market.TO_PROFILE_FOR_AUTH, 'Войти на сайт', "no")
+        #self.screenshot(path="pw_autotests/screenshots/log_in.png") #посмотреть как указать путь как переменную
 
     # def farmabonus(self):
     #     self.open("")
@@ -141,3 +149,12 @@ class MarketPage(Base):
     #     self.click(Account.CARDS)
     #     self.assertions.have_text(Account.BALANCE, 'Баланс карты', "no")
     #     self.screenshot(path="pw_autotests/screenshots/balance.png")
+
+    def add_to_favorites(self):
+        self.input_value_by_index(Market.DRUG_INPUT, 0, Constants.drug_name_less_50)
+        self.click_text_by_index('Гематоген', 0)
+        #self.click_element_by_index(Market.ADD_BTN, 0)
+        self.click_element_by_index(Market.ADD_TO_FAVORITES, 2)
+        self.click(Market.TO_PROFILE)
+        self.click(Account.FAVORITES)
+        self.assertions.have_text(Account.PRODUCT_IN_FAVORITES, 'Гематоген Русский детский', 'no')
