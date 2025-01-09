@@ -8,3 +8,6 @@ class Account:
     LOG_OUT_BTN ="[class='profile-aside__arrow link link_arrow link_arrow_right']"
     FAVORITES="[id='favorite']"
     PRODUCT_IN_FAVORITES = "[class='small-card__title j-small-card-title']"
+    ORDERS = "//label[text()='Мои заказы']"
+    ORDERS_HISTORY = "//label[text()='История']"
+    ORDER = "[class='card-basic__number']"

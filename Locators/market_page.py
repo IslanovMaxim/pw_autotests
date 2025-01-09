@@ -6,6 +6,9 @@ class Market:
   NUM_INPUT = '[name="phone"]'
   CITY_NO = "//button[text()='Нет']"
   CHOOSE_CITY_FROM_LIST = "[data-name='Казань']"
+  OLD_PRICE = "[class='product-card-x__price-old price_old']"
+  NEW_PRICE = "[class='product-card-x__price-new price_new']"
+  PRODUCT_IN_SEARCH_LIST = "//h4[text()='Дезринит']"
 
   CONFIRM_DELETE_FROM_CART = "//button[text()='Да']"
   EMPTY_CART = "//h1[text()='Корзина пуста']"

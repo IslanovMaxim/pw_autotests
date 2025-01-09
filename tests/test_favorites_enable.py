@@ -4,8 +4,8 @@ from pages.market_main_page import MarketPage
 
 
 @pytest.mark.smoke
-class TestLogin:
-    def test_user_login(self, browser):
+class TestFavoritesEnable:
+    def test_favorites_enable(self, browser):
         m = Main(browser)
         m.user_login()
         p = MarketPage(browser)

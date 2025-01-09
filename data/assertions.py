@@ -44,3 +44,6 @@ class Assertions(Base):
     def contain_text(self, locator, text: str, msg):  # элемент содержит текст
         loc = self.page.locator(locator)
         expect(loc).to_contain_text(text), msg
+
+    # def text_on_page(self, page, msg):  # текст на странице
+    #     expect(self.page).to_have_text(), msg

@@ -14,3 +14,4 @@ class Basket:
     DELETE_BTN = "[class='product-card__close j-product-card-close']"
     TOTAL_PRICE = '[class="price price_new j-total-price"]'
     TOTAL_DISCOUNT = '[class="f_discount j-total-discount"]'
+    OLD_PRICE = '[class="price-search__content"]'

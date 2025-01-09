@@ -150,11 +150,21 @@ class MarketPage(Base):
     #     self.assertions.have_text(Account.BALANCE, 'Баланс карты', "no")
     #     self.screenshot(path="pw_autotests/screenshots/balance.png")
 
-    def add_to_favorites(self):
-        self.input_value_by_index(Market.DRUG_INPUT, 0, Constants.drug_name_less_50)
-        self.click_text_by_index('Гематоген', 0)
-        #self.click_element_by_index(Market.ADD_BTN, 0)
-        self.click_element_by_index(Market.ADD_TO_FAVORITES, 2)
-        self.click(Market.TO_PROFILE)
-        self.click(Account.FAVORITES)
-        self.assertions.have_text(Account.PRODUCT_IN_FAVORITES, 'Гематоген Русский детский', 'no')
+    # def add_to_favorites(self):
+    #     self.input_value_by_index(Market.DRUG_INPUT, 0, Constants.drug_name_less_50)
+    #     self.click_text_by_index('Гематоген', 0)
+    #     #self.click_element_by_index(Market.ADD_BTN, 0)
+    #     self.click_element_by_index(Market.ADD_TO_FAVORITES, 2)
+    #     self.click(Market.TO_PROFILE)
+    #     self.click(Account.FAVORITES)
+    #     self.assertions.text_on_page()
+
+    def sale_price_enable(self):
+        self.open("")
+        self.click_element_by_index(Market.CITY_YES, 1)
+        self.input_value_by_index(Market.DRUG_INPUT, 0, Constants.drug_name_sale)
+        self.click_text_by_index('Дезринит', 0)
+        self.timeout(5000)
+        self.click(Market.PRODUCT_IN_SEARCH_LIST)
+        self.assertions.contain_text(Market.OLD_PRICE, '779', "no") #подставляем цену без акции
+        self.assertions.contain_text(Market.NEW_PRICE, '659', "no") #цена по акции
